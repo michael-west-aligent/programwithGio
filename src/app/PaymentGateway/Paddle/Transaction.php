@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PaymentGateway\Paddle;
+namespace App\PaymentGateway\Paddle;
 
 use PaymentGateway\Stripe\Transaction as PaddleTransaction;
 
