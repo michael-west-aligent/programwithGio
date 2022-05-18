@@ -43,3 +43,5 @@
 
 $obj = (object) 1;
 var_dump($obj->scalar);
+
+//done
