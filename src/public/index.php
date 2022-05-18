@@ -1,24 +1,12 @@
 <?php
 
-//require_once 'PaymentProfile.php';
-//require_once 'Customer.php';
-//require_once 'Transaction.php';
-//
+use App\PaymentGateway\Paddle\Transaction;
 
-require_once '../PaymentGateway/Stripe/Transaction.php';
-require_once '../PaymentGateway/Paddle/Transaction.php';
-require_once '../PaymentGateway/Paddle/CustomerProfile.php';
-require_once '../Notification/Email.php';
+require __DIR__ . '/../vendor/autoload.php';
 
+$transaction = new Transaction();
 
-use PaymentGateway\Paddle\{Transaction, CustomerProfile};
-use PaymentGateway\Stripe\Transaction as StripeTransaction;
+$transaction->setStatus(\App\Enums\Status::PAID);
 
-
-$paddleTransaction = new Transaction();
-$stripeTransaction = new StripeTransaction();
-$paddleCustomerProfile = new CustomerProfile();
-
-
-var_dump($paddleTransaction, $stripeTransaction, $paddleCustomerProfile);
+var_dump($transaction);
 
