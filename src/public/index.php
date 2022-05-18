@@ -1,4 +1,27 @@
 <?php
+
+require_once 'PaymentProfile.php';
+require_once 'Customer.php';
+require_once 'Transaction.php';
+
+
+$transaction = new Transaction(5, 'Test');
+
+//$profileId = null;
+//
+//if($customer = $transaction->getCustomer()) {
+//    if($paymentProfile = $customer->getPaymentProfile()) {
+//        $profileId = $paymentProfile->id;
+//    }
+//}
+//
+//echo $profileId;
+
+
+echo $transaction->getCustomer()?->setPaymentProfile(createProfile())?->id;
+
+
+
 //declare(strict_types=1);
 //require_once 'Transaction.php';
 //
@@ -41,7 +64,7 @@
 //$obj = (object) $arr;
 //var_dump($obj->{0});
 
-$obj = (object) 1;
-var_dump($obj->scalar);
+//$obj = (object) 1;
+//var_dump($obj->scalar);
 
 //done
