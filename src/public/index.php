@@ -5,14 +5,15 @@ use App\PaymentGateway\Paddle\Transaction;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$transaction = new Transaction( 25, 'Transaction 1');
+$transaction = new Transaction( 25);
 
-//$db = DB::getInstance([]);
+/** ENCAPSULATION  */
+//$reflectionProperty = new reflectionProperty(Transaction::class, 'amount');
 //
-//$transaction = TransactionFactory::make(25, 'Transaction 1');
+//$reflectionProperty->setAccessible(true);
+//
+//$reflectionProperty->setValue($transaction, 125);
+//var_dump($reflectionProperty->getValue($transaction));
+
 
 $transaction->process();
-//
-//var_dump($transaction::getCount());
-
-var_dump($transaction->amount);
