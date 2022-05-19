@@ -1,26 +1,15 @@
 <?php
 
-//use App\DB;
-//use App\PaymentGateway\Paddle\Transaction;
+require_once __DIR__ . '/../vendor/autoload.php';
 
-use App\Toaster;
-require __DIR__ . '/../vendor/autoload.php';
+$fields = [
+//    new \App\Field('basefield'),
+    new \App\Text('textField'),
+//    new \App\Boolean('booleanField'),
+    new \App\Checkbox('checkboxField'),
+    new \App\Radio('radioField'),
+];
 
-
-$toaster = new Toaster();
-
-$toaster->addSlice('bread');
-$toaster->toast();
-
-//$transaction = new Transaction( 25);
-
-/** ENCAPSULATION  */
-//$reflectionProperty = new reflectionProperty(Transaction::class, 'amount');
-//
-//$reflectionProperty->setAccessible(true);
-//
-//$reflectionProperty->setValue($transaction, 125);
-//var_dump($reflectionProperty->getValue($transaction));
-//
-//
-//$transaction->process();
+foreach($fields as $field) {
+    echo $field->render() . '<br />';
+}
