@@ -2,29 +2,11 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$invoice = new App\Invoice(15);
+//$classA = new App\ClassA();
+//$classB = new App\ClassB();
 //
-$invoice ->amount =35;
+//echo $classA->getName() . PHP_EOL;
+//echo $classB->getName() . PHP_EOL;
 
-var_dump($invoice);
-
-
-//
-//$service = new App\DebtCollectionService();
-//
-//echo $service->collectDebt(new App\Rocky()) . PHP_EOL;
-//
-
-
-
-//$fields = [
-////    new \App\Field('basefield'),
-//    new \App\Text('textField'),
-////    new \App\Boolean('booleanField'),
-//    new \App\Checkbox('checkboxField'),
-//    new \App\Radio('radioField'),
-//];
-//
-//foreach($fields as $field) {
-//    echo $field->render() . '<br />';
-//}
+echo \App\ClassA::getName() . PHP_EOL;
+echo \App\ClassB::getName() . PHP_EOL;
