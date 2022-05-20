@@ -2,11 +2,18 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-//$classA = new App\ClassA();
-//$classB = new App\ClassB();
-//
-//echo $classA->getName() . PHP_EOL;
-//echo $classB->getName() . PHP_EOL;
+$coffeeMaker = new \App\Coffeemaker();
+$coffeeMaker->makeCoffee();
 
-echo \App\ClassA::getName() . PHP_EOL;
-echo \App\ClassB::getName() . PHP_EOL;
+$latteMaker = new \App\LatteMaker();
+$latteMaker->makeCoffee();
+$latteMaker->makeLatte();
+
+$cappuccinoMaker = new App\CappuccinoMaker();
+$cappuccinoMaker->makeCoffee();
+$cappuccinoMaker->makeCappuccino();
+
+$allInOneCoffeeMaker = new App\AllInOneCoffeeMaker();
+$allInOneCoffeeMaker->makeCoffee();
+$allInOneCoffeeMaker->makeLatte();
+$allInOneCoffeeMaker->makeCappuccino(); 
