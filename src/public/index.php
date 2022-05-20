@@ -10,4 +10,3 @@ public function __construct(public int $x, public int $y, public  int $z)
 }
 };
 
-var_dump(get_class($obj));
