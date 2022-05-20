@@ -1,17 +1,15 @@
 <?php
 
-use App\Invoice;
-use App\Customer;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$invoice = new Invoice(new Customer());
 
+$dateTime = new DateTime();
 
-try {
-    $invoice->process(-25);
-} catch(\App\Exception\MissingBillingInfoException) {
-    echo 'Some error ' . PHP_EOL;
-} catch(\InvalidArgumentException) {
-    echo 'Invalid argument exception' . PHP_EOL;
-}
+//var_dump($dateTime);
+
+$dateTime->setTimezone(new DateTimeZone('Australia/Adelaide'));
+
+//var_dump($dateTime);
+
+echo $dateTime->format('m/d/Y g:i A') . PHP_EOL;
