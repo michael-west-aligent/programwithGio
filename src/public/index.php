@@ -2,18 +2,11 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$coffeeMaker = new \App\Coffeemaker();
-$coffeeMaker->makeCoffee();
+$obj = new class(1,2,3)  {
 
-$latteMaker = new \App\LatteMaker();
-$latteMaker->makeCoffee();
-$latteMaker->makeLatte();
 
-$cappuccinoMaker = new App\CappuccinoMaker();
-$cappuccinoMaker->makeCoffee();
-$cappuccinoMaker->makeCappuccino();
+public function __construct(public int $x, public int $y, public  int $z)
+{
+}
+};
 
-$allInOneCoffeeMaker = new App\AllInOneCoffeeMaker();
-$allInOneCoffeeMaker->makeCoffee();
-$allInOneCoffeeMaker->makeLatte();
-$allInOneCoffeeMaker->makeCappuccino(); 
