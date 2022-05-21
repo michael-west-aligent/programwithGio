@@ -4,21 +4,39 @@ use App\InvoiceCollection;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-//array
-//foreach(['a', 'b', 'c', 'd', 'e'] as $key => $value) {
+/** SUPERGLOBALS  */
+//are built in variables that are always  within all scope throughtout PHP code.
 
-//replace array with an object of invoice class
+/** $_SERVER  */
+//this contains all the information about  server and execution enviroment
+
 //
+//echo '<pre>';
+//print_r($_SERVER);
+//echo '</pre>';
 
-//foreach(new App\Invoice(25) as $key=> $value)  {
-//
-//    //we get the id number and value amount
-//    echo $key . ' = ' . $value . PHP_EOL;
-//}
+$router = new App\Router();
 
-$invoiceCollection = new InvoiceCollection([new Invoice(15), new Invoice(25), new Invoice(50)]);
+//we can register some routes
 
-foreach($invoiceCollection as $invoice ) {
-//    var_dump($invoice);
-    echo $invoice->id . '-' . $invoice->amount .  PHP_EOL;
-}
+//$router->register(
+//    '/',
+//    function() {
+//    echo 'Home';
+//});
+
+
+$router
+    ->register('/', [App\Classes\Home::class, 'index'])
+    ->register('/invoices', [App\Classes\Invoice::class, 'index'])
+    ->register('/invoices/create', [App\Classes\Invoice::class, 'create']);
+
+//invoices page
+//$router->register(
+//    '/invoices',
+//    function() {
+//        echo 'Invoices';
+//    }
+//) ;
+
+echo $router->resolve($_SERVER['REQUEST_URI'])       ;
