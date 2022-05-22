@@ -4,6 +4,8 @@ use App\InvoiceCollection;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
+session_start();
+
 /** SUPERGLOBALS  */
 //are built in variables that are always  within all scope throughtout PHP code.
 
@@ -41,4 +43,8 @@ $router
 //    }
 //) ;
 
-echo $router->resolve($_SERVER['REQUEST_URI'], strtolower($_SERVER['REQUEST_METHOD']));
+echo $router->resolve(
+    $_SERVER['REQUEST_URI'],
+    strtolower($_SERVER['REQUEST_METHOD']));
+
+var_dump($_SESSION);
