@@ -31,6 +31,7 @@ $router
     ->register('/invoices', [App\Classes\Invoice::class, 'index'])
     ->register('/invoices/create', [App\Classes\Invoice::class, 'create']);
 
+
 //invoices page
 //$router->register(
 //    '/invoices',
