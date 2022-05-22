@@ -12,18 +12,31 @@ class Router
 
     //reguster method should take in the given route and the given action
     //the action can be a callable or an array containing the class / method
-    public function register(string $route, callable|array $action): self //the method is returning itself
+    public function register(string $requestMethod, string $route, callable|array $action): self //the method is returning itself
     {
         //the next thing we need is a property to store the route and action
-         $this->routes[$route] = $action;
+         $this->routes[$requestMethod][$route] = $action;
          return $this;
     }
 
-    public function resolve(string $requestUri)
+    public function get(string $route, callable|array $action): self
+    {
+        return $this->register('get', $route, $action);
+    }
+
+    public function post(string $route, callable|array $action): self
+    {
+        return $this->register('post', $route, $action);
+    }
+
+    public function routes(): array
+    {
+        return $this->routes;
+    }
+    public function resolve(string $requestUri, string $requestMethod)
     {
     $route = explode('?', $requestUri)[0];
-
-    $action = $this->routes[$route] ?? null;
+    $action = $this->routes[$requestMethod][$route] ?? null;
 
     if (! $action) {
         throw new RouteNotFoundException();
