@@ -17,8 +17,6 @@ session_start();
 //print_r($_SERVER);
 //echo '</pre>';
 
-define('VIEW_PATH', __DIR__ . '/../views');
-
 $router = new App\Router();
 
 //we can register some routes
@@ -29,14 +27,13 @@ $router = new App\Router();
 //    echo 'Home';
 //});
 
-try {
-    $router
-        ->get('/', [App\Controllers\HomeController::class, 'index'])
-        ->post('/upload', [App\Controllers\HomeController::class, 'upload'])
-        ->get('/invoices', [App\Controllers\InvoiceController::class, 'index'])
-        ->get('/invoices/create', [App\Controllers\InvoiceController::class, 'create'])
-        ->post('/invoices/create', [App\Controllers\InvoiceController::class, 'store']);
-
+try {                                                                                     
+    $router                                                                               
+        ->get('/', [App\Controllers\HomeController::class, 'index'])                      
+        ->post('/upload', [App\Controllers\HomeController::class, 'upload'])              
+        ->get('/invoices', [App\Controllers\InvoiceController::class, 'index'])           
+        ->get('/invoices/create', [App\Controllers\InvoiceController::class, 'create'])   
+        ->post('/invoices/create', [App\Controllers\InvoiceController::class, 'store']);  
 
 //invoices page
 //$router->register(
@@ -45,6 +42,7 @@ try {
 //        echo 'Invoices';
 //    }
 //) ;
+
 
     echo $router->resolve(
         $_SERVER['REQUEST_URI'],
