@@ -28,7 +28,7 @@ public function store()
 
     $invoice->store($amount);
 
-    var_dump($amount);
+//    var_dump($amount);
 }
 
 
