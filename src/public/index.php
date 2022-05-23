@@ -17,6 +17,8 @@ session_start();
 //print_r($_SERVER);
 //echo '</pre>';
 
+define('VIEW_PATH', __DIR__ . '/../views');
+
 $router = new App\Router();
 
 //we can register some routes
