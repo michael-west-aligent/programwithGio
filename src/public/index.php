@@ -6,6 +6,10 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 session_start();
 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__)::createImmutable(dirname(__DIR__));
+$dotenv->load();
+
+
 /** SUPERGLOBALS  */
 //are built in variables that are always  within all scope throughtout PHP code.
 
