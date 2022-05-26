@@ -2,21 +2,37 @@
 
 namespace App;
 
+use PDO;
+
 class DB
 {
-    public static ?DB $instance = null;
 
-    public function __construct(public array $config)
-    {
-        echo 'instance created <br/> ';
-    }
+    private PDO $pdo;
 
-    public static function getInstance(array $config):DB
+    public function __construct(array $config)
     {
-        if(self::$instance == null) {
-            self::$instance = new DB($config);
+
+        $defaultOptions = [
+            PDO::ATTR_EMULATE_PREPARES => false,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            ];
+
+        try {
+          $this->pdo = new PDO(
+                $config['driver'] . $config['host'] . ';dbname=' . $config['database'],
+                $config['user'],
+                $config['pass'],
+              $config['options'] ?? $defaultOptions
+            );
+        } catch (\PDOException $e) {
+            throw new \PDOException($e->getMessage(), (int) $e->getCode());
         }
 
-        return self::$instance;
+
+    }
+
+    public function __call(string $name, array $arguments)
+    {
+return call_user_func_array([$this->pdo, $name], $arguments);
     }
 }
