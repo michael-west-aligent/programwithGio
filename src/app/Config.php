@@ -20,7 +20,7 @@ class Config
     'host' => $env['DB_HOST'],
     'user' => $env['DB_USER'],
     'pass' => $env['DB_PASS'],
-    'databases' => $env['DB_DATABASE'],
+    'database' => $env['DB_DATABASE'],
     'driver' => $env['DB_DRIVER'] ?? 'mysql',
                  ]
         ];

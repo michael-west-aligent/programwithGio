@@ -21,9 +21,7 @@ class HomeController
         $amount = 25;
 
         try {
-
             $db->beginTransaction();
-
 
             $newUserStmt = $db->prepare(
                 'INSERT INTO users (first_name, last_name, email, created_at, is_active)
@@ -41,25 +39,31 @@ class HomeController
 
             $newInvoiceStmt->execute([$amount, $userId]);
 
-            $fetchStmt = $db->prepare(
-                'SELECT invoices.id AS invoice_id, amount, user_id, first_name, last_name
+            $db->commit();
+        } catch(\Throwable $e){
+            if($db->inTransaction()) {
+                $db->rollBack();
+            }
+        }
+        $fetchStmt = $db->prepare(
+            'SELECT invoices.id AS invoice_id, amount, user_id, first_name, last_name
                 FROM invoices
                 INNER JOIN users ON user_id = users.id
                 WHERE email = ?'
-            );
+        );
 
-            $fetchStmt->execute([$email]);
+        $fetchStmt->execute([$email]);
 
-            echo '<pre>';
-            var_dump($fetchStmt->fetch(PDO::FETCH_ASSOC));
-            echo '</pre>';
+        echo '<pre>';
+        var_dump($fetchStmt->fetch(PDO::FETCH_ASSOC));
+        echo '</pre>';
 
-            return View::make('index', ['foo' => 'bar']);
-        }
+
+        return View::make('index', ['foo' => 'bar']);
+    }
 
     public  function upload()
     {
-    }
 
-}
+    }
 }
