@@ -1,6 +1,9 @@
 <?php
-use App\Invoice;
-use App\InvoiceCollection;
+
+use App\App;
+use App\Controllers\HomeController;
+use App\Controllers\InvoiceController;
+use App\Router;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -16,22 +19,9 @@ $dotenv->load();
 /** $_SERVER  */
 //this contains all the information about  server and execution enviroment
 
-//
-//echo '<pre>';
-//print_r($_SERVER);
-//echo '</pre>';
-
 define('VIEW_PATH', __DIR__ . '/../views');
 
 $router = new App\Router();
-
-//we can register some routes
-
-//$router->register(
-//    '/',
-//    function() {
-//    echo 'Home';
-//});
 
 try {                                                                                     
     $router                                                                               
@@ -41,23 +31,4 @@ try {
         ->get('/invoices/create', [App\Controllers\InvoiceController::class, 'create'])   
         ->post('/invoices/create', [App\Controllers\InvoiceController::class, 'store']);  
 
-//invoices page
-//$router->register(
-//    '/invoices',
-//    function() {
-//        echo 'Invoices';
-//    }
-//) ;
-
-
-    echo $router->resolve(
-        $_SERVER['REQUEST_URI'],
-        strtolower($_SERVER['REQUEST_METHOD']));
-
-} catch(App\Exceptions\RouteNotFoundException $e) {
-    http_response_code(404); 
-   echo \App\View::make('error/404');
-
-}
-//
-//var_dump($_SESSION);
+(new App($router, ['uri' => $_SERVER['REQUEST_URI'], 'method' => $_SERVER['REQUEST_METHOD']]))->run();
